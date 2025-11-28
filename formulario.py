@@ -6,26 +6,39 @@ import streamlit.components.v1 as components
 # ===============================
 st.markdown("""
     <style>
+
+        /* ======== FONTES ======== */
         label, .stRadio, .stCheckbox, .stTextInput, .stSelectbox, .stTextArea {
-            font-size: 14px !important;
+            font-size: 12px !important;
         }
         .small-title {
-            font-size: 16px !important;
+            font-size: 12px !important;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
-        /* ======== FUNDO BRANCO AO IMPRIMIR ======== */
+        /* ================================
+             APENAS NA IMPRESSÃO → fundo branco
+           ================================ */
         @media print {
-            body, html, .main, .stApp {
+            body, html, .main, .stApp, .block-container {
                 background: white !important;
                 -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
             * {
                 background-color: white !important;
                 color: black !important;
+            }
+        }
+
+        /* ================================
+             NA TELA → mantém o tema normal
+           ================================ */
+        @media screen {
+            .stApp, .main, .block-container {
+                background: inherit !important;
             }
         }
     </style>
@@ -59,7 +72,11 @@ def render_form(form_id):
     with col3:
         tipo = st.selectbox(
             "Tipo",
-            ["CAP", "XAROPE", "COMP", "CREME", "SACHÊS"],
+            [
+                "CAP", "XAROPE", "COMP", "CREME", "SACHÊS",
+                "LOÇÃO", "SHAMPOO", "FILME", "FLORAL", "GEL",
+                "POMADA", "BISCOITO", "ÓVULO", "GOMA", "CHOCOLATE"
+            ],
             key=f"tipo_{form_id}"
         )
 
@@ -117,19 +134,23 @@ def render_form(form_id):
     if aroma_opcao == "SIM":
         aroma_texto = st.text_input("Qual Aroma/Essência?", key=f"aroma_texto_{form_id}")
 
-    # --------------------------
-    # OUTRAS INFORMAÇÕES
-    # --------------------------
-    outras = st.text_area("Outras informações (opcional)", key=f"outras_{form_id}")
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
 
 # ===============================
 # RENDERIZA TODOS OS FORMULÁRIOS
 # ===============================
 for i in range(1, st.session_state.form_count + 1):
     render_form(i)
+
+# ===============================
+# CAMPO ÚNICO — OBSERVAÇÕES FINAIS
+# ===============================
+st.markdown("---")
+
+observacoes_finais = st.text_area(
+    "Outras informações / Observações gerais:",
+    key="observacoes_finais",
+    height=50
+)
 
 # ===============================
 # BOTÃO PARA ADICIONAR MAIS FORMULÁRIOS
@@ -172,3 +193,5 @@ btn.addEventListener("click", function() {
 """
 
 components.html(print_button_html, height=80)
+
+
