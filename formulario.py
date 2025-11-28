@@ -18,7 +18,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("Formulário de Requisição")
+st.title("Protocolo de Inclusão")
 
 # Inicializa quantidade de formulários
 if "form_count" not in st.session_state:
@@ -193,3 +193,4 @@ btn.addEventListener("click", function() {{
 """
 
 components.html(print_html, height=450)
+
