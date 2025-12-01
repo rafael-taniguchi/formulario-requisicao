@@ -183,7 +183,7 @@ const btn = document.getElementById("printBtn");
 btn.addEventListener("click", function() {{
   const printContent = document.getElementById("printContent").innerHTML;
   const newWindow = window.open("", "_blank", "width=1000,height=600");
-  newWindow.document.write("<html><head><title>Imprimir</title><style>body {{ font-family: Arial, sans-serif; font-size:22px; line-height:1.6; }}</style></head><body>");
+  newWindow.document.write("<html><head><title>Imprimir</title><style>body {{ font-family: Arial, sans-serif; font-size:14px; line-height:1.6; }}</style></head><body>");
   newWindow.document.write(printContent);
   newWindow.document.write("</body></html>");
   newWindow.document.close();
@@ -193,4 +193,5 @@ btn.addEventListener("click", function() {{
 """
 
 components.html(print_html, height=450)
+
 
