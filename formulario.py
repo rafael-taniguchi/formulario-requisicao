@@ -166,16 +166,25 @@ print_html = f"""
 {form_summary}
 </div>
 
-<div style="margin-top:16px;">
-  <button id="printBtn" style="
-        background-color:#4CAF50;
-        color:white;
-        padding:10px 20px;
-        font-size:14px;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-    ">🖨️ Imprimir Resumo</button>
+<!-- Botão flutuante fixo -->
+<div id="printBtn" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 9999;
+">
+    🖨️
 </div>
 
 <script>
@@ -192,6 +201,4 @@ btn.addEventListener("click", function() {{
 </script>
 """
 
-components.html(print_html, height=450)
-
-
+components.html(print_html, height=600)
